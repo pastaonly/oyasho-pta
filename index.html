@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尾山台小学校PTA 情報公開サイト</title>
+<style>
+  :root {
+    --primary: #1e40af;
+    --primary-light: #dbeafe;
+    --accent: #059669;
+    --accent-light: #d1fae5;
+    --warm: #d97706;
+    --warm-light: #fef3c7;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --radius: 8px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: var(--gray-800);
+    line-height: 1.85;
+    background: var(--gray-50);
+    font-size: 14.5px;
+  }
+
+  /* ── Top Bar ── */
+  .topbar {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+  .topbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar .logo {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+  }
+  .topbar nav a {
+    color: rgba(255,255,255,.85);
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 20px;
+    transition: color .2s;
+  }
+  .topbar nav a:hover { color: #fff; }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 26px; margin-bottom: 8px; }
+  .hero .sub { font-size: 14px; opacity: .85; }
+  .hero .pillars {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .pillar-card {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    min-width: 180px;
+    backdrop-filter: blur(4px);
+  }
+  .pillar-card .num { font-size: 28px; font-weight: 800; }
+  .pillar-card .label { font-size: 13px; opacity: .9; }
+
+  /* ── Container ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── Section ── */
+  .section {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    margin: 24px auto;
+    max-width: 900px;
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--gray-800);
+    color: #fff;
+    padding: 14px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .section-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .section-header .badge {
+    background: rgba(255,255,255,.2);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+  }
+  .section-header .toggle {
+    font-size: 18px;
+    transition: transform .3s;
+  }
+  .section-header.blue { background: var(--primary); }
+  .section-header.green { background: var(--accent); }
+  .section-header.amber { background: var(--warm); }
+  .section-header.slate { background: var(--gray-700); }
+
+  .section-body {
+    padding: 24px;
+    display: none;
+  }
+  .section-body.open { display: block; }
+
+  /* ── Article Content ── */
+  .article h3 {
+    font-size: 15px;
+    color: var(--primary);
+    margin: 20px 0 8px;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary);
+  }
+  .article h3:first-child { margin-top: 0; }
+  .article h4 {
+    font-size: 14px;
+    color: var(--gray-700);
+    margin: 16px 0 6px;
+    font-weight: 700;
+  }
+  .article p { margin-bottom: 10px; }
+  .article ol, .article ul {
+    margin: 8px 0 12px 20px;
+  }
+  .article li { margin-bottom: 4px; }
+  .article .sub-list {
+    margin: 4px 0 8px 20px;
+    list-style: lower-alpha;
+  }
+  .article strong { color: var(--gray-900); }
+  .article blockquote {
+    background: var(--gray-100);
+    border-left: 3px solid var(--gray-300);
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+  .article hr {
+    border: none;
+    border-top: 1px solid var(--gray-200);
+    margin: 20px 0;
+  }
+
+  /* ── Tables ── */
+  .article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .article th, .article td {
+    padding: 8px 12px;
+    border: 1px solid var(--gray-200);
+    text-align: left;
+    vertical-align: top;
+  }
+  .article thead th {
+    background: var(--gray-100);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .article tbody tr:nth-child(even) { background: var(--gray-50); }
+
+  /* ── Q&A ── */
+  .qa-item {
+    border-bottom: 1px solid var(--gray-200);
+    padding: 16px 0;
+  }
+  .qa-item:last-child { border-bottom: none; }
+  .qa-q {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .qa-q .marker {
+    background: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .qa-a {
+    margin-top: 10px;
+    padding-left: 40px;
+    color: var(--gray-700);
+    display: none;
+  }
+  .qa-a.open { display: block; }
+  .qa-a ul { margin: 8px 0 8px 16px; }
+  .qa-a li { margin-bottom: 4px; }
+
+  /* ── Comparison highlight ── */
+  .highlight-box {
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .highlight-box.info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+  .highlight-box.success { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .highlight-box.warning { background: var(--warm-light); border-left: 4px solid var(--warm); }
+
+  /* ── Document Map ── */
+  .doc-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .doc-card {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 14px;
+    background: #fff;
+    transition: box-shadow .2s;
+  }
+  .doc-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .doc-card .doc-icon { font-size: 24px; margin-bottom: 6px; }
+  .doc-card .doc-title { font-size: 13px; font-weight: 700; color: var(--gray-800); }
+  .doc-card .doc-desc { font-size: 11.5px; color: var(--gray-500); margin-top: 4px; }
+
+  /* ── Account Structure ── */
+  .account-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .account-card {
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+  .account-card h4 {
+    font-size: 13px;
+    margin-bottom: 4px;
+    border-left: none;
+    text-align: center;
+  }
+  .account-card p { font-size: 11.5px; line-height: 1.6; }
+  .ac-blue { background: var(--primary-light); color: var(--primary); }
+  .ac-green { background: var(--accent-light); color: #065f46; }
+  .ac-amber { background: var(--warm-light); color: #92400e; }
+
+  /* ── Infographic: Cost Comparison ── */
+  .cost-box { margin: 20px 0; }
+  .cost-box h3 { font-size: 15px; color: var(--gray-800); margin-bottom: 12px; border-left: 3px solid var(--primary); padding-left: 10px; }
+  .cost-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .cost-label { width: 70px; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .cost-bar-wrap { flex: 1; position: relative; height: 32px; }
+  .cost-bar {
+    height: 100%; border-radius: 6px; display: flex; align-items: center;
+    padding: 0 12px; font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .cost-amount { position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 600; }
+
+  /* ── Infographic: Committee Cards ── */
+  .comm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .comm-card { border-radius: var(--radius); padding: 16px; text-align: center; }
+  .comm-card h4 { font-size: 13px; margin-bottom: 4px; border-left: none; text-align: center; }
+  .comm-card .comm-grade { font-size: 11px; color: var(--gray-500); margin-bottom: 8px; }
+  .comm-card .comm-type {
+    font-size: 10px; padding: 2px 8px; border-radius: 4px;
+    display: inline-block; font-weight: 700;
+  }
+  .comm-card .comm-desc { font-size: 11px; color: var(--gray-600); margin-top: 8px; line-height: 1.5; }
+  .type-school { background: var(--primary-light); color: var(--primary); }
+  .type-parent { background: var(--red-light); color: var(--red); }
+  .comm-1 { background: #f1f8e9; border-top: 3px solid #689F38; }
+  .comm-2 { background: #e8f5e9; border-top: 3px solid #388E3C; }
+  .comm-3 { background: #fff3e0; border-top: 3px solid #F57C00; }
+
+  /* ── Infographic: Governance ── */
+  .gov-items { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .gov-item { padding: 14px 16px; border-radius: var(--radius); background: var(--gray-50); border-left: 4px solid; }
+  .gov-item h4 { font-size: 13px; margin-bottom: 4px; border-left: none; padding-left: 0; color: var(--gray-800); }
+  .gov-item p { font-size: 11px; color: var(--gray-600); line-height: 1.5; }
+  .gov-1 { border-color: var(--primary); }
+  .gov-2 { border-color: var(--warm); }
+  .gov-3 { border-color: var(--accent); }
+  .gov-4 { border-color: #7c3aed; }
+
+  /* ── Infographic: Independent Accounts ── */
+  .indep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .indep-card { border-radius: var(--radius); padding: 16px; border-left: 4px solid; }
+  .indep-card h4 { font-size: 13px; margin-bottom: 6px; border-left: none; padding-left: 0; }
+  .indep-card p { font-size: 11px; color: var(--gray-600); line-height: 1.6; }
+  .indep-card .indep-tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 4px;
+    display: inline-block; font-weight: 700; margin-bottom: 6px;
+  }
+  .indep-sotsu { background: #fff8e1; border-color: var(--warm); }
+  .indep-sotsu .indep-tag { background: var(--warm); color: #fff; }
+  .indep-asobi { background: #e8f5e9; border-color: var(--accent); }
+  .indep-asobi .indep-tag { background: var(--accent); color: #fff; }
+
+  /* ── Background Message ── */
+  .background-message {
+    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 16px 0;
+    border-left: 4px solid var(--warm);
+    line-height: 1.9;
+    font-size: 14px;
+    color: var(--gray-700);
+  }
+  .background-message p { margin-bottom: 12px; }
+  .background-message p:last-child { margin-bottom: 0; }
+  .background-message strong { color: var(--gray-900); }
+
+  /* ── Pillar Detail Cards ── */
+  .pillar-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+  .pillar-detail {
+    border-radius: var(--radius); padding: 20px; text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06); position: relative; overflow: hidden;
+  }
+  .pillar-detail::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+  .pd-1 { background: #fff; } .pd-1::before { background: var(--primary); }
+  .pd-2 { background: #fff; } .pd-2::before { background: var(--warm); }
+  .pd-3 { background: #fff; } .pd-3::before { background: var(--red); }
+  .pillar-detail .pd-icon { font-size: 32px; margin-bottom: 8px; }
+  .pillar-detail h4 { font-size: 14px; margin-bottom: 8px; border-left: none; text-align: center; }
+  .pillar-detail .pd-old { font-size: 12px; color: var(--gray-400); text-decoration: line-through; margin-bottom: 4px; }
+  .pillar-detail .pd-new { font-size: 22px; font-weight: 800; }
+  .pillar-detail .pd-note { font-size: 11px; color: var(--gray-500); margin-top: 6px; }
+  .pd-1 .pd-new { color: var(--primary); }
+  .pd-2 .pd-new { color: var(--warm); }
+  .pd-3 .pd-new { color: var(--red); }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--gray-400);
+    font-size: 12px;
+  }
+
+  /* ── Document Structure Diagram ── */
+  .tree-root {
+    background: linear-gradient(135deg, var(--gray-800), var(--gray-700));
+    color: #fff; border-radius: var(--radius); padding: 18px 24px;
+    text-align: center; font-size: 15px; font-weight: 700;
+    margin-bottom: 16px; box-shadow: 0 3px 10px rgba(0,0,0,.12);
+  }
+  .tree-root small { display: block; font-size: 12px; font-weight: 400; opacity: .7; margin-top: 4px; }
+  .branch-row { display: flex; gap: 14px; margin-bottom: 14px; }
+  .branch-card {
+    flex: 1; border-radius: var(--radius); padding: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06); position: relative;
+  }
+  .branch-card h4 { font-size: 13px; margin-bottom: 6px; border-left: none; padding-left: 0; }
+  .branch-card p { font-size: 12px; color: var(--gray-600); line-height: 1.6; }
+  .branch-card .tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; color: #fff;
+  }
+  .card-kiyaku { background: var(--primary-light); border-left: 4px solid var(--primary); }
+  .card-kiyaku .tag { background: var(--primary); }
+  .card-saisoku-a { background: var(--warm-light); border-left: 4px solid var(--warm); }
+  .card-saisoku-a .tag { background: var(--warm); }
+  .card-saisoku-b { background: var(--red-light); border-left: 4px solid var(--red); }
+  .card-saisoku-b .tag { background: var(--red); }
+  .card-external { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .card-external .tag { background: var(--accent); }
+  .tree-connector { text-align: center; margin: -4px 0 8px; font-size: 16px; color: var(--gray-400); letter-spacing: 2px; }
+  .legend-row { display: flex; gap: 16px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+  .chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .chapter-item {
+    padding: 8px 12px; border-radius: var(--radius); font-size: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .chapter-num { font-weight: 700; font-size: 14px; min-width: 28px; }
+  .new-badge { background: var(--red); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 3px; font-weight: 700; }
+  .role-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  .role-table th { background: var(--gray-800); color: #fff; padding: 8px 12px; text-align: left; }
+  .role-table td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  .role-table tr:nth-child(even) { background: var(--gray-50); }
+
+  /* ── Print ── */
+  @media print {
+    @page { size: A4; margin: 12mm; }
+    body { background: #fff; font-size: 11px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .topbar { display: none; }
+    .hero { padding: 20px; }
+    .section { box-shadow: none; border: 1px solid var(--gray-200); page-break-inside: avoid; }
+    .section-body { display: block !important; }
+    .qa-a { display: block !important; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .hero .pillars { flex-direction: column; align-items: center; }
+    .pillar-card { min-width: 260px; }
+    .account-grid { grid-template-columns: 1fr; }
+    .pillar-detail-grid { grid-template-columns: 1fr; }
+    .comm-grid { grid-template-columns: 1fr; }
+    .gov-items { grid-template-columns: 1fr; }
+    .indep-grid { grid-template-columns: 1fr; }
+    .branch-row { flex-direction: column; }
+    .chapter-grid { grid-template-columns: 1fr; }
+    .topbar nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">尾山台小学校PTA</div>
+    <nav>
+      <a href="#overview">改革概要</a>
+      <a href="#background">背景</a>
+      <a href="#structure">構成図</a>
+      <a href="#qa">Q&A</a>
+      <a href="#kaitei">改定箇所</a>
+      <a href="#kiyaku">規約</a>
+      <a href="#kaikei">会計細則</a>
+      <a href="#iinkai">委員会細則</a>
+      <a href="#contract">契約書</a>
+    </nav>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero" id="overview">
+  <h1>PTA改革 令和8年度</h1>
+  <div class="sub">「無理なく・公平に・透明に」── 3つの柱で生まれ変わる尾山台小PTA</div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 改革の背景 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="background">
+  <div class="section-header amber" onclick="toggleSection(this)">
+    <h2>改革の背景 ── なぜ今、変える必要があるのか</h2>
+    <span class="toggle">▲</span>
+  </div>
+  <div class="section-body open">
+    <div class="background-message">
+      <p>世田谷区教育委員会より、<strong>PTAへの強制入会の禁止</strong>および<strong>PTA会費の学校徴収の禁止</strong>が通達されました。</p>
+      <p>現在のPTAは、会員から委員を選出し、会費を徴収して運営しています。しかし、任意加入が徹底されて会員数が減った場合、会費を払い続けている会員が一方的に損をしてしまう構造になっています。会員と非会員の間で対立が生まれ、最悪の場合、<strong>PTAが解散</strong>に追い込まれるおそれがあります。</p>
+      <p>PTAが解散すれば、これまでPTAが担ってきた大事な役割 ── 保護者間の関係性づくり、学校運営への協力、子どもたちへの豊かな体験機会の提供 ── がすべて失われてしまいます。</p>
+      <p><strong>それを防ぐために、今年度は制度の基盤を整備しました。</strong></p>
+      <p>学校コミュニティプロジェクトという新しい仕組みも作りましたが、これを盛り上げていくには数年かかると思います。制度の不備もたくさんあると思います。</p>
+      <p><strong>みなさんと一緒に、よい尾山台小学校を作っていきたい。一緒にやっていきましょう。</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 改革概要（主要変更ポイント統合） -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="points">
+  <div class="section-header blue" onclick="toggleSection(this)">
+    <h2>主要変更ポイント</h2>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body open">
+
+    <!-- 3 Pillars Detail -->
+    <div class="pillar-detail-grid">
+      <div class="pillar-detail pd-1">
+        <div class="pd-icon">&#128100;</div>
+        <h4>PTA会員の役割再編</h4>
+        <div class="pd-old">委員選出・会費徴収</div>
+        <div class="pd-new">保険＋決議</div>
+        <div class="pd-note">会員のメリットを「守る」と「決める」に集約</div>
+      </div>
+      <div class="pillar-detail pd-2">
+        <div class="pd-icon">&#128197;</div>
+        <h4>学年別活動委員会</h4>
+        <div class="pd-old">6委員会・53名以上</div>
+        <div class="pd-new">3委員会</div>
+        <div class="pd-note">必須業務を最小限に、適切な学年で担当</div>
+      </div>
+      <div class="pillar-detail pd-3">
+        <div class="pd-icon">&#127775;</div>
+        <h4>学校コミュニティプロジェクト</h4>
+        <div class="pd-old">「やらされる」活動</div>
+        <div class="pd-new">「やってみたい」へ</div>
+        <div class="pd-note">誰でも自由に企画・参加できる任意活動</div>
+      </div>
+    </div>
+
+    <!-- 6-year cost comparison -->
+    <div class="cost-box">
+      <h3>6年間の保護者負担比較</h3>
+      <div class="cost-row">
+        <div class="cost-label">旧制度</div>
+        <div class="cost-bar-wrap">
+          <div class="cost-bar" style="width:100%; background: linear-gradient(90deg, #ef5350, #e53935);">15,840円</div>
+        </div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">新制度</div>
+        <div class="cost-bar-wrap">
+          <div class="cost-bar" style="width:54.6%; background: linear-gradient(90deg, #60a5fa, #2563eb);">8,650円</div>
+          <span class="cost-amount" style="right: 0; color: var(--primary);">&#9660; 7,190円減</span>
+        </div>
+      </div>
+      <p style="font-size:11px; color:var(--gray-400); margin-top:8px; text-align:right;">※新制度＝委託費500円&times;6年＋校帽3,150円＋卒業備品2,500円</p>
+    </div>
+
+    <!-- Account structure -->
+    <h3 style="font-size: 15px; color: var(--gray-800); margin: 20px 0 8px; border-left: 3px solid var(--primary); padding-left: 10px;">PTA管理の3口座</h3>
+    <div class="account-grid">
+      <div class="account-card ac-blue">
+        <h4>学校運営必要経費口座</h4>
+        <p>年500円×430家庭<br>消耗品・コピー代・保険料等<br>年度内に使い切り</p>
+      </div>
+      <div class="account-card ac-green">
+        <h4>学校コミュニティ基金</h4>
+        <p>旧PTA会計+エコ口座の残金<br>委員会活動費・プロジェクト支援<br>関係団体支援</p>
+      </div>
+      <div class="account-card ac-amber">
+        <h4>学校未来基金</h4>
+        <p>旧積立口座+移管金<br>周年事業・設備投資<br>執行は総会決議が必要</p>
+      </div>
+    </div>
+
+    <!-- Independent accounts -->
+    <h3 style="font-size: 15px; color: var(--gray-800); margin: 20px 0 8px; border-left: 3px solid var(--primary); padding-left: 10px;">PTA会計と独立した口座</h3>
+    <div class="indep-grid">
+      <div class="indep-card indep-sotsu">
+        <span class="indep-tag">保護者自治</span>
+        <h4>卒対口座</h4>
+        <p>委員長名義（三菱UFJ銀行）<br>卒業準備金を学校モール経由で集金<br>アルバム・お花・プレゼント・同窓会費を執行<br>年度末ゼロ精算｜PTA監査対象外</p>
+      </div>
+      <div class="indep-card indep-asobi">
+        <span class="indep-tag">区の委託事業</span>
+        <h4>遊び場開放運営委員会口座</h4>
+        <p>世田谷区教育委員会からの委託料<br>指導員手当・イベント費・事務運営費<br>区のマニュアルに従い独自運営<br>PTA会計と一切関与しない</p>
+      </div>
+    </div>
+
+    <!-- Committee structure -->
+    <h3 style="font-size: 15px; color: var(--gray-800); margin: 20px 0 8px; border-left: 3px solid var(--primary); padding-left: 10px;">学年別活動委員会（3委員会）</h3>
+    <div class="comm-grid">
+      <div class="comm-card comm-1">
+        <h4>旗振り委員会</h4>
+        <div class="comm-grade">1年生保護者</div>
+        <span class="comm-type type-school">学校委託型</span>
+        <div class="comm-desc">入学直後3日間の登校見守り<br>日程枠から選択制</div>
+      </div>
+      <div class="comm-card comm-2">
+        <h4>執行委員会</h4>
+        <div class="comm-grade">3年生保護者</div>
+        <span class="comm-type type-school">学校委託型</span>
+        <div class="comm-desc">行事受付・通学路点検<br>遊び場開放運営</div>
+      </div>
+      <div class="comm-card comm-3">
+        <h4>卒業対策委員会</h4>
+        <div class="comm-grade">6年生保護者</div>
+        <span class="comm-type type-parent">保護者自治型</span>
+        <div class="comm-desc">卒業アルバム・卒業式準備<br>資金管理は保護者自治</div>
+      </div>
+    </div>
+
+    <!-- Governance -->
+    <h3 style="font-size: 15px; color: var(--gray-800); margin: 20px 0 8px; border-left: 3px solid var(--primary); padding-left: 10px;">ガバナンス強化ポイント</h3>
+    <div class="gov-items">
+      <div class="gov-item gov-1">
+        <h4>臨時総会の発動要件引き下げ</h4>
+        <p>全会員の1/5 → 10世帯以上の連署<br>会長が2週間以内に招集しなければ要求者が招集可</p>
+      </div>
+      <div class="gov-item gov-2">
+        <h4>役員解任規定の新設</h4>
+        <p>規約違反・職務懈怠・信頼失墜時<br>臨時総会＋出席者の過半数で解任</p>
+      </div>
+      <div class="gov-item gov-3">
+        <h4>リアルタイム情報公開</h4>
+        <p>各口座の執行状況を期中に公開<br>5年・10年後の財務シミュレーションを毎年更新</p>
+      </div>
+      <div class="gov-item gov-4">
+        <h4>残高アラート（100万円）</h4>
+        <p>基金残高100万円以下で5段階の対応措置を発動<br>強制会費の再導入には総会決議が必要</p>
+      </div>
+    </div>
+
+    <!-- Document Map -->
+    <h3 style="font-size: 15px; color: var(--gray-800); margin: 24px 0 8px; border-left: 3px solid var(--primary); padding-left: 10px;">公開ドキュメント一覧</h3>
+    <p style="margin-bottom: 12px; font-size: 13px; color: var(--gray-500);">各セクションをクリックすると内容を確認できます。</p>
+    <div class="doc-map">
+      <div class="doc-card"><div class="doc-icon">📘</div><div class="doc-title">PTA規約（改正版）</div><div class="doc-desc">全10章25条。PTAの根幹ルール</div></div>
+      <div class="doc-card"><div class="doc-icon">📗</div><div class="doc-title">会計運用細則</div><div class="doc-desc">3口座の予算管理・禁止事項・透明性</div></div>
+      <div class="doc-card"><div class="doc-icon">📙</div><div class="doc-title">学年別活動委員会 運営細則</div><div class="doc-desc">旗振り・執行・卒対の運営ルール</div></div>
+      <div class="doc-card"><div class="doc-icon">📄</div><div class="doc-title">学校PTA間 業務委託契約書</div><div class="doc-desc">学校との経費管理・活動支援の契約</div></div>
+      <div class="doc-card"><div class="doc-icon">❓</div><div class="doc-title">保護者向けQ&A</div><div class="doc-desc">よくある質問12項目</div></div>
+      <div class="doc-card"><div class="doc-icon">📝</div><div class="doc-title">規約の改定箇所一覧</div><div class="doc-desc">条文ごとの変更内容を一覧で確認</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ドキュメント構成図 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="structure">
+  <div class="section-header slate" onclick="toggleSection(this)">
+    <h2>ドキュメント構成と役割</h2>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body article">
+
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--primary)"></div>PTA規約（本体）</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--warm)"></div>会計運用細則</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>学年別活動委員会運営細則</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>外部規定</div>
+    </div>
+
+    <div class="tree-root">
+      PTA規約（本体）　全10章25条
+      <small>総会の過半数賛成で改正</small>
+    </div>
+
+    <div class="tree-connector">├──────────┼──────────┤</div>
+
+    <div class="branch-row">
+      <div class="branch-card card-saisoku-a">
+        <span class="tag">細則①</span>
+        <h4>会計運用細則</h4>
+        <p>全5章13条<br>根拠：規約第7条・第15条・第19条<br>改正：役員会決議（総会に報告）</p>
+        <p style="margin-top:6px; font-size:11px; color:var(--gray-400);">3口座の運用ルール、禁止支出、情報公開、財務シミュレーション、残高アラート、監査</p>
+      </div>
+      <div class="branch-card card-saisoku-b">
+        <span class="tag">細則②</span>
+        <h4>学年別活動委員会 運営細則</h4>
+        <p>全5章11条<br>根拠：規約第16条第4項<br>改正：役員会決議（総会に報告）</p>
+        <p style="margin-top:6px; font-size:11px; color:var(--gray-400);">委員会の性質分類、選出方法、旗振り・執行・卒対の活動、卒対口座、移行措置</p>
+      </div>
+    </div>
+
+    <div class="tree-connector">──────── 参照 ────────</div>
+
+    <div class="branch-row">
+      <div class="branch-card card-external">
+        <span class="tag">外部</span>
+        <h4>学校PTA間 業務委託契約書</h4>
+        <p>学校委託型活動の依頼内容・役割分担・委託費の管理を明確化<br>（規約第16条2項・細則第9条）</p>
+      </div>
+      <div class="branch-card card-external">
+        <span class="tag">外部</span>
+        <h4>遊び場開放 事務マニュアル</h4>
+        <p>世田谷区教育委員会の委託事業<br>PTA会計とは独立（細則第5条4項）</p>
+      </div>
+      <div class="branch-card card-external">
+        <span class="tag">外部</span>
+        <h4>写真館 基本契約書</h4>
+        <p>PTAが発注者（甲）として締結<br>ベンダーロックイン防止</p>
+      </div>
+    </div>
+
+    <hr>
+    <h3>規約の章構成（全10章25条）</h3>
+    <div class="chapter-grid">
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">1</span> 総則（第1〜3条）</div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">2</span> 事業（第4条）</div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">3</span> 会員（第5条）</div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">4</span> 会計（第6〜7条）</div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">5</span> 役員及び会計監査委員（第8〜10条）</div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">6</span> 総会（第11〜13条）</div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">7</span> 役員会（第14〜15条）</div>
+      <div class="chapter-item" style="background:var(--red-light);"><span class="chapter-num">8</span> 学年別活動委員会（第16〜17条） <span class="new-badge">新設</span></div>
+      <div class="chapter-item" style="background:var(--warm-light);"><span class="chapter-num">9</span> 学校コミュニティプロジェクト（第18〜19条） <span class="new-badge">新設</span></div>
+      <div class="chapter-item" style="background:var(--primary-light);"><span class="chapter-num">10</span> 改正（第20条）</div>
+      <div class="chapter-item" style="background:var(--gray-100); grid-column: span 2;"><span class="chapter-num">付</span> 付則（第21〜25条）　※学校支援コーディネーター <span class="new-badge">新設</span></div>
+    </div>
+
+    <hr>
+    <h3>規約・細則・外部規定の役割分担</h3>
+    <table class="role-table">
+      <tr><th>文書</th><th>何を定めるか</th><th>改正手続き</th></tr>
+      <tr><td><strong>PTA規約（本体）</strong></td><td>組織の目的・会員資格・会計の大枠・役員構成・総会・委員会の位置付け・プロジェクトの枠組み</td><td>総会の過半数賛成</td></tr>
+      <tr><td><strong>会計運用細則</strong></td><td>3口座の予算配分・決裁権限・禁止支出・情報公開ルール・財務シミュレーション・残高アラート・監査</td><td>役員会決議（次の定期総会で報告）</td></tr>
+      <tr><td><strong>学年別活動委員会 運営細則</strong></td><td>3委員会の性質分類・選出ルール・各委員会の活動内容・卒対口座の運用・移行措置・遊び場開放との関係</td><td>役員会決議（次の定期総会で報告）</td></tr>
+      <tr><td><strong>学校PTA間 業務委託契約書</strong></td><td>学校委託型活動の依頼内容・役割分担・委託費の管理</td><td>学校・PTA役員会の合意</td></tr>
+      <tr><td><strong>遊び場開放 事務マニュアル</strong></td><td>遊び場開放運営委員会の運営・会計・指導員管理</td><td>世田谷区教育委員会が管理（PTA会計と独立）</td></tr>
+      <tr><td><strong>写真館基本契約書</strong></td><td>卒業アルバムの発注・著作権・データ保護・自動更新</td><td>PTA（甲）と写真館（乙）の合意</td></tr>
+    </table>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Q&A Section -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="qa">
+  <div class="section-header green" onclick="toggleSection(this)">
+    <h2>保護者向けQ&A</h2>
+    <span class="badge">全12問</span>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q1</span>今回のPTA改革の概要を教えてください。</div>
+      <div class="qa-a">
+        <p>大きく3つの柱があります。</p>
+        <ol>
+          <li><strong>PTA会員の役割再編</strong> — 委員の選出や会費の徴収をやめ、PTA会員であることのメリットを「PTA保険で子どもが守られる」「総会での議決権を持てる」の2つに集約します。年間の保護者負担は学校運営必要経費として一家庭あたり500円のみです。</li>
+          <li><strong>学年別活動委員会</strong> — 従来の6委員会を廃止し、学校からの依頼に基づく必須業務を最小限に絞り、適切な学年の保護者が担当する3委員会（旗振り・執行・卒対）に再編します。</li>
+          <li><strong>学校コミュニティプロジェクト</strong> — 「やらされる」活動から「やってみたい」活動へ。おやフェスなどのイベントは、誰でも自由に企画・参加できる任意活動として位置付け、PTAは応援団としてサポートします。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q2</span>PTAの入退会については？</div>
+      <div class="qa-a"><p>入会は<strong>入会承諾書の提出</strong>をもって行う形式になります。会員の対象は従来どおり保護者および教職員です。また、退会はいつでも自由に行うことができます。入会・退会ともに理由の説明は不要です。</p></div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q3</span>年間の保護者負担はどう変わりますか？</div>
+      <div class="qa-a"><p>従来はPTA会費として一家庭あたり年額2,640円でしたが、改正後は学校運営必要経費として<strong>一家庭あたり年額500円</strong>のみとなります。全校約430家庭が対象です。なお、教職員は会員ですが、委託費は保護者・児童の学校運営に関する経費のため負担対象外です。卒業対策関連の費用（アルバム代等）は別途、6年生保護者の実費負担となります。</p></div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q4</span>旧校外委員会の業務はどうなりますか？</div>
+      <div class="qa-a">
+        <p>校外委員会は廃止となります。主な業務の取り扱いは以下のとおりです。</p>
+        <ul>
+          <li><strong>「こどもをまもろう110番」</strong> — PTA単独での運営を終了します。地域の防犯・安全活動は学校・地域・行政と連携した形に移行します。</li>
+          <li><strong>校外通信の発行</strong> — 廃止します。安全に関する連絡事項は学校の既存の連絡手段（すぐーる等）を活用します。</li>
+          <li><strong>講習会参加等</strong> — 学校コミュニティプロジェクト（任意活動）として、参加したい方がいれば活動できます。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q5</span>旧エコ委員会の活動は終わりますか？</div>
+      <div class="qa-a"><p>PTA公式の委員会としては廃止しますが、<strong>2025年度のエコ委員メンバーが任意団体として活動を継続する予定</strong>です。エコキャップ回収等の活動に関心のある方は、引き続き参加いただけます。学校コミュニティプロジェクトとして基金からの支援を申請することも可能です。</p></div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q6</span>学級代表（学代）の廃止後、クラスの連絡網はどうなりますか？</div>
+      <div class="qa-a">
+        <p>学級代表は委員選出が不要になったため廃止しますが、クラスごとの保護者連絡の仕組みは引き続き重要と考えています。</p>
+        <ul>
+          <li><strong>すぐーる（一斉案内ツール）</strong> — 学校からの公式連絡に加え、各クラスの保護者間連絡もすぐーるを活用して作成・運用することを推奨します。</li>
+          <li><strong>LINE Worksの導入検討</strong> — 保護者間のコミュニケーションツールとして、LINE Worksの無料プランが利用できる可能性があり、現在検討中です。決定次第、改めてご案内いたします。</li>
+        </ul>
+        <p>いずれもPTA公式のツールではなく、各クラスの保護者の判断で自由にご活用ください。</p>
+      </div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q7</span>寄せ書き（ヨセッティ）はどうなりますか？</div>
+      <div class="qa-a"><p>ヨセッティ等の寄せ書きサービスは<strong>任意活動</strong>となります。従来はPTA会費から費用を負担していましたが、改正後はPTA会計からの支援は行いません。利用を希望される場合は、各クラスの保護者間で自主的にご調整ください。</p></div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q8</span>遊び場委員会はどうなりますか？</div>
+      <div class="qa-a">
+        <p>遊び場委員会は継続します。学年別活動委員会の<strong>執行委員会（3年生保護者）</strong>の活動として、校庭開放の現場運営を引き続き担当します。遊び場開放事業自体は世田谷区教育委員会からの委託に基づく事業です。</p>
+      </div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q9</span>入学時の校帽はどうなりますか？</div>
+      <div class="qa-a"><p>従来はPTA会費から一括購入していた校帽は、<strong>各保護者が学校用品具販売店にて個別に購入</strong>する形に変更します。販売店への確認は済んでおり、個別購入に対応いただけます。</p></div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q10</span>個人情報漏えい補償保険の加入はどうなりますか？</div>
+      <div class="qa-a"><p><strong>廃止します。</strong> 従来は年間約16,000円の保険料を負担していましたが、改革以前から連絡網の電子化や名簿配布の廃止等により、PTAが管理する個人情報はほぼなくなってきていました。現状の費用対効果を考慮し、廃止としました。</p></div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q11</span>卒業関連の費用負担はどう変わりますか？</div>
+      <div class="qa-a">
+        <p>卒業対策委員会は「保護者自治型」として6年生保護者が自主的に運営します。費用は以下の方法で集金します。</p>
+        <ul>
+          <li>委員長が各費目（卒業アルバム代・お花代・プレゼント代・同窓会費等）の金額を確定</li>
+          <li><strong>学校モール</strong>を通じて保護者から徴収</li>
+          <li>集金された資金は卒対口座で管理し、PTA会計とは完全に独立</li>
+        </ul>
+        <p>なお、旧制度でPTA会費を納付していた期間に応じて、卒業式備品については学校コミュニティ基金から段階的に支援を行います（2027年3月卒業の5/6から段階的に縮小し、2032年3月以降は全額保護者実費）。</p>
+      </div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q" onclick="toggleQA(this)"><span class="marker">Q12</span>世田谷区小学校PTA連合会（世小P）との関係は？</div>
+      <div class="qa-a"><p>改正後の規約付則に、世小Pの輪番業務について規定しています。輪番が回ってきた際は、役員会が会員に募集をかけ、担い手がいる場合に限り引き受けます。担い手がいない場合は辞退できます。次回の輪番は令和10年度（2028年度）に予定されています。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 規約の改定箇所一覧 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="kaitei">
+  <div class="section-header blue" onclick="toggleSection(this)">
+    <h2>規約の改定箇所一覧</h2>
+    <span class="badge">条文ごとの変更</span>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body article">
+
+    <h3>改革の3本柱</h3>
+    <table>
+      <thead><tr><th>柱</th><th>変更前</th><th>変更後</th></tr></thead>
+      <tbody>
+        <tr><td>PTA会員の役割再編</td><td>委員選出・会費徴収</td><td>保険と議決権のメリットに集約</td></tr>
+        <tr><td>学年別活動委員会</td><td>6委員会・53名以上</td><td>必須業務を最小限に、学年別3委員会</td></tr>
+        <tr><td>学校コミュニティプロジェクト</td><td>「やらされる」活動</td><td>誰でも自由に企画・参加できる任意活動</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>章構成の変更</h3>
+    <table>
+      <thead><tr><th>章</th><th>旧規約</th><th>新規約</th></tr></thead>
+      <tbody>
+        <tr><td>第1章</td><td>総則（第1〜3条）</td><td>総則（第1〜3条）※変更なし</td></tr>
+        <tr><td>第2章</td><td>事業（第4条）</td><td>事業（第4条）※変更なし</td></tr>
+        <tr><td>第3章</td><td>会員（第5条）</td><td>会員（第5条）※任意入会に変更</td></tr>
+        <tr><td>第4章</td><td>会計（第6〜8条）</td><td>会計（第6〜7条）※3口座分離管理に変更</td></tr>
+        <tr><td>第5章</td><td>役員及び会計監査委員、校外委員長（第9〜12条）</td><td>役員及び会計監査委員（第8〜10条）※半減・解任規定新設</td></tr>
+        <tr><td>第6章</td><td>総会（第13〜15条）</td><td>総会（第11〜13条）※臨時総会要件引き下げ</td></tr>
+        <tr><td>第7章</td><td>運営委員会（第16〜18条）</td><td>役員会（第14〜15条）※運営委員会廃止</td></tr>
+        <tr><td>第8章</td><td>役員会（第19〜20条）</td><td><strong>学年別活動委員会（第16〜17条）※新設</strong></td></tr>
+        <tr><td>第9章</td><td>会計監査（第21条）</td><td><strong>学校コミュニティプロジェクト（第18〜19条）※新設</strong></td></tr>
+        <tr><td>第10章</td><td>委員会（第22〜27条）</td><td><strong>改正（第20条）</strong></td></tr>
+        <tr><td>付則</td><td>第29〜31条</td><td>第21〜25条 ※学校支援コーディネーター新設</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第3章　会員（第5条）</h3>
+    <table>
+      <thead><tr><th>項目</th><th>旧</th><th>新</th></tr></thead>
+      <tbody>
+        <tr><td>会員の定義</td><td>保護者＋校長＋教職員</td><td>保護者および教職員（実質変更なし）</td></tr>
+        <tr><td>入会方法</td><td>自動加入（書類なし）</td><td>入会承諾書の提出による任意加入</td></tr>
+        <tr><td>退会</td><td>規定なし</td><td>任意に退会可能</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第4章　会計（第6〜7条）</h3>
+    <p>旧：会費を一括管理（第6〜8条）→ 新：3口座に分離管理（第6〜7条）。会費条項（旧第8条）は廃止。</p>
+    <table>
+      <thead><tr><th>口座</th><th>原資</th><th>用途</th><th>執行権限</th></tr></thead>
+      <tbody>
+        <tr><td>学校運営必要経費口座</td><td>年額500円の委託費</td><td>コピー代・PTA保険・世小P会費</td><td>役員決裁。年度内使い切り</td></tr>
+        <tr><td>学校コミュニティ基金</td><td>旧一般会計・エコ口座残金</td><td>学年別活動・プロジェクト支援・関係団体支援</td><td>細則による</td></tr>
+        <tr><td>学校未来基金（積立）</td><td>旧積立口座・余剰金</td><td>周年事業・ICT整備等</td><td>会員決議必須</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第5章　役員（第8〜10条）</h3>
+    <h4>構成の変更</h4>
+    <table>
+      <thead><tr><th>役職</th><th>旧</th><th>新</th></tr></thead>
+      <tbody>
+        <tr><td>会長</td><td>1名（保護者）</td><td>1名（保護者）</td></tr>
+        <tr><td>副会長</td><td>3名（保護者2・副校長1）</td><td>1名（保護者）</td></tr>
+        <tr><td>書記</td><td>3名（保護者2・教職員1）</td><td>廃止</td></tr>
+        <tr><td>会計</td><td>3名（保護者2・教職員1）</td><td>2名（保護者）</td></tr>
+        <tr><td>会計監査</td><td>3名（保護者2・教職員1）</td><td>1名（保護者）</td></tr>
+        <tr><td><strong>合計</strong></td><td><strong>10名</strong></td><td><strong>5名</strong></td></tr>
+      </tbody>
+    </table>
+    <h4>新設事項</h4>
+    <ul>
+      <li>役員解任規定（第8条8項）：臨時総会＋過半数賛成で解任</li>
+      <li>選出方法の簡素化（第9条）：推薦委員会を廃止、役員が担当</li>
+      <li>役員任務に学年別活動委員会のサポートを追加（第10条5項）</li>
+    </ul>
+
+    <hr>
+    <h3>第6章　総会（第11〜13条）</h3>
+    <table>
+      <thead><tr><th>項目</th><th>旧</th><th>新</th></tr></thead>
+      <tbody>
+        <tr><td>臨時総会の発動要件</td><td>全会員の1/5以上</td><td>10世帯以上の連署</td></tr>
+        <tr><td>会長が招集しない場合</td><td>規定なし</td><td>2週間以内に招集しなければ要求者が自ら招集可</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第7章　役員会（第14〜15条）</h3>
+    <p>旧：運営委員会＋役員会の2層構造 → 新：役員会に一本化</p>
+    <table>
+      <thead><tr><th>項目</th><th>旧</th><th>新</th></tr></thead>
+      <tbody>
+        <tr><td>構成</td><td>役員＋校長・副校長</td><td>変更なし</td></tr>
+        <tr><td>任務</td><td>議案作成・予算案作成のみ</td><td>企画・検討・決裁、基金の予算枠内執行、学校未来基金の管理を追加</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第8章　学年別活動委員会（第16〜17条）<span style="color:var(--red); font-size:12px; margin-left:8px;">新設</span></h3>
+    <p>旧規約では委員会活動に関する明確な章立てがなく、6委員会53名以上の体制が運用上のルールとして存在。新規約では第8章として独立させ、PTAの関与を明確化。</p>
+    <table>
+      <thead><tr><th>項目</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>位置付け</td><td>保護者の協力活動を組織的に担う委員会の総称</td></tr>
+        <tr><td>種類</td><td>学校委託型（旗振り・執行）と保護者自治型（卒対）の2分類</td></tr>
+        <tr><td>PTAの役割</td><td>設置・選出調整・活動支援</td></tr>
+        <tr><td>会計</td><td>学校委託型の事務経費は基金から、保護者自治型は保護者実費</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第9章　学校コミュニティプロジェクト（第18〜19条）<span style="color:var(--red); font-size:12px; margin-left:8px;">新設</span></h3>
+    <p>旧規約に該当規定なし。任意活動（おやフェス等）をPTA規約上に位置付け。</p>
+    <table>
+      <thead><tr><th>項目</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>位置付け</td><td>PTAが管理する組織ではなく、任意活動の総称</td></tr>
+        <tr><td>PTAの役割</td><td>財政的・広報的支援（応援団）</td></tr>
+        <tr><td>費用</td><td>学校コミュニティ基金から公募制で支援</td></tr>
+        <tr><td>収益</td><td>全額を基金に返還</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>廃止された条項・機関</h3>
+    <table>
+      <thead><tr><th>廃止項目</th><th>旧規約</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td>PTA会費（月額220円）</td><td>第8条</td><td>委託費500円に移行</td></tr>
+        <tr><td>書記（3名）</td><td>第9条</td><td>役員半減</td></tr>
+        <tr><td>教職員の役員就任</td><td>第9条</td><td>保護者主体の原則</td></tr>
+        <tr><td>校外委員長</td><td>第12条</td><td>委員会再編</td></tr>
+        <tr><td>運営委員会</td><td>第16〜18条</td><td>役員会に機能集約</td></tr>
+        <tr><td>6委員会体制</td><td>第22〜27条</td><td>学年別3委員会に再編</td></tr>
+        <tr><td>推薦委員会</td><td>第27条</td><td>役員が選出を担当</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PTA規約 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="kiyaku">
+  <div class="section-header blue" onclick="toggleSection(this)">
+    <h2>PTA規約（令和8年5月改正）</h2>
+    <span class="badge">全10章25条</span>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body article">
+
+    <h3>第1章　総則</h3>
+    <h4>第1条（名称）</h4>
+    <p>本会は尾山台小学校ＰＴＡといい、その事務所を東京都世田谷区立尾山台小学校内におく。<br>（〒158-0086　東京都世田谷区尾山台3丁目11番1号）</p>
+    <h4>第2条（目的）</h4>
+    <p>本会は民主教育に対する理解を深め、学校と家庭の協力により、児童の幸福を増進するとともに、会員の教養を高め相互の親睦をはかる。</p>
+    <h4>第3条（方針）</h4>
+    <ol>
+      <li>非営利的・非宗教的・非政党的。</li>
+      <li>学校管理・教職員の人事に不干渉。</li>
+      <li>児童福祉の社会団体的機関と協力。</li>
+    </ol>
+
+    <hr>
+    <h3>第2章　事業</h3>
+    <h4>第4条（事業）</h4>
+    <ol>
+      <li>民主教育の理解と推進。</li>
+      <li>学校と家庭との連絡。</li>
+      <li>校外生活環境の改善。</li>
+      <li>保健衛生、健康の増進に協力。</li>
+      <li>施設の整備充実に協力。</li>
+      <li>給食の充実向上に協力。</li>
+      <li>会員相互の親睦と教養の向上。</li>
+      <li>交通安全への協力。</li>
+      <li>その他、本会の目的を達成するために必要なこと。</li>
+    </ol>
+
+    <hr>
+    <h3>第3章　会員</h3>
+    <h4>第5条（会員）</h4>
+    <p>本会の会員は、学校に在籍する児童の保護者および学校に勤務する教職員とする。<br>入会は入会承諾書の提出をもって行う。退会は任意に行うことができる。</p>
+
+    <hr>
+    <h3>第4章　会計</h3>
+    <h4>第6条</h4>
+    <p>本会の会計年度は、毎年4月1日に始まり翌年3月31日に終わる。</p>
+    <h4>第7条</h4>
+    <p>本会が管理する資金は、その性質に応じて以下の3つの口座に分離して管理する。</p>
+    <ol>
+      <li><strong>学校運営必要経費口座</strong>
+        <ul class="sub-list" style="list-style:none; margin-left:0;">
+          <li>原資：学校が保護者から委託を受けた一家庭年額500円の委託費。教職員は委託費の負担対象外とする。</li>
+          <li>用途：学校運営に不可欠な事務経費（消耗品、学校用コピー機利用料、PTA保険料、世小P会費）。</li>
+          <li>執行権限：学校との業務委託契約に基づき、PTA役員が判断して執行する。</li>
+          <li>決算：原則として年度内に使い切り、残金が生じた場合は学校未来基金へ移管する。次年度への繰越は行わない。</li>
+        </ul>
+      </li>
+      <li><strong>学校コミュニティ基金</strong>
+        <ul class="sub-list" style="list-style:none; margin-left:0;">
+          <li>原資：従来のPTA一般会計およびエコ口座の残金（制度移行時の合算分）。</li>
+          <li>用途：学校からの依頼に基づく学年別活動および学校コミュニティプロジェクトの活動費。</li>
+          <li>執行権限：役員会で定める予算配分・決裁ルールの細則に従う。</li>
+          <li>決算：年度末に収支状況・繰越額・将来推計を会員に報告する。</li>
+        </ul>
+      </li>
+      <li><strong>学校未来基金（長期積立）</strong>
+        <ul class="sub-list" style="list-style:none; margin-left:0;">
+          <li>原資：従来の積立口座、および学校運営必要経費口座からの移管金。</li>
+          <li>用途：周年事業、学校設備・ICT整備等の長期的な学校環境整備。</li>
+          <li>執行権限：金額に関わらず、常にPTA会員の決議（総会等）を必要とする。</li>
+        </ul>
+      </li>
+    </ol>
+    <p>各口座の運用に関する詳細は、役員会が定める細則による。</p>
+
+    <hr>
+    <h3>第5章　役員及び会計監査委員</h3>
+    <h4>第8条（役員及び会計監査委員の種類及び任期）</h4>
+    <p>本会の役員は次の通りとする。</p>
+    <ol>
+      <li>会長　1名（保護者）</li>
+      <li>副会長　1名（保護者）</li>
+      <li>会計　2名（保護者）</li>
+      <li>会計監査委員　1名（保護者）</li>
+    </ol>
+    <p>5. 役員及び会計監査委員の任期は１年とする。</p>
+    <ul class="sub-list">
+      <li>役員は引き続き1年間の再任は妨げない。</li>
+      <li>会計監査は引き続きの再任は認めない。</li>
+      <li>任期満了後も総会まで必要に応じて補佐をする。</li>
+      <li>会長においては、必要に応じて再任の期間を役員会にて協議の上定める。</li>
+    </ul>
+    <p>6. 役員及び会計監査の兼任は認めない。<br>
+    7. 役員の人数は、必要に応じて増やすことができる。<br>
+    8. 役員が次の事由に該当する場合、臨時総会の発動および出席者の過半数の賛成により解任できる。</p>
+    <ul class="sub-list">
+      <li>本規約または細則に著しく違反したとき。</li>
+      <li>職務を著しく怠り、または不正行為があったとき。</li>
+      <li>会員の信頼を著しく損なう行為があったとき。</li>
+      <li>会長が解任対象となる場合は、副会長が臨時総会を招集する。</li>
+    </ul>
+
+    <h4>第9条（役員及び会計監査委員の選出とその就任）</h4>
+    <p>次年度役員及び会計監査委員の募集・選出は、現年度の役員が担当する。</p>
+    <ol>
+      <li>役員及び会計監査委員は、1年から5年の保護者が対象。</li>
+      <li>在校児童の保護者に限り、次年度入学予定の兄弟姉妹でも受けることができる。</li>
+      <li>推薦された役員及び会計監査委員は、総会の承認によって決定する。</li>
+      <li>新たに選ばれた役員及び会計監査委員は、総会の承認を以て就任する。</li>
+    </ol>
+
+    <h4>第10条（役員及び会計監査委員の任務）</h4>
+    <ol>
+      <li>会長は、本会を代表し、総会及び役員会等の会務を総括する。</li>
+      <li>会長、もしくは副会長は、本会を代表し、学校運営協議会の委員任命対象となる。</li>
+      <li>副会長は会長を補佐し、会長不在の場合はその代理を務める。対外的な窓口業務を担当する。</li>
+      <li>会計は本会の収支について管理し、総会において決算報告をする。学校との業務委託契約に基づき、学校運営必要経費口座の管理・執行および学校への報告を担う。</li>
+      <li>役員は、第8章に定める学年別活動委員会について、選出プロセスの調整および活動のサポートを行う。</li>
+      <li>会計監査委員はその年度の会計を随時監査し、不適切な支出がないかをチェックのうえ、その結果を定期総会に報告する。</li>
+    </ol>
+
+    <hr>
+    <h3>第6章　総会</h3>
+    <h4>第11条（総会の任務）</h4>
+    <ol>
+      <li>今年度役員及び会計監査委員の承認。</li>
+      <li>前年度事業並びに決算の承認。</li>
+      <li>新年度事業計画及び予算の審議決定。</li>
+      <li>規約の改正。</li>
+      <li>その他重要事項に関する審議並びに承認。</li>
+    </ol>
+    <h4>第12条（総会の開催方法）</h4>
+    <p>定期総会は、毎年度５月に会長が開催する。</p>
+    <p>10世帯以上の会員の連署による要求があった場合、会長は臨時総会を開かなければならない。会長が正当な理由なく2週間以内に招集しない場合は、要求者が自ら招集できる。</p>
+    <p>総会決議は書面決議も可能とし、その日時、方法及び議題は、あらかじめ会長より通知する。</p>
+    <h4>第13条（定足数及び議決権）</h4>
+    <p>総会の定足数は、会員の5分の１とする。ただし、委任状を含む。<br>総会の議決は、出席者の過半数の同意を必要とする。</p>
+
+    <hr>
+    <h3>第7章　役員会</h3>
+    <h4>第14条（役員会の構成）</h4>
+    <p>本会の役員及び校長、副校長をもって構成する。</p>
+    <h4>第15条（役員会の任務）</h4>
+    <ol>
+      <li>総会に提出する議案を作成する。</li>
+      <li>予算案を作成する。</li>
+      <li>PTA運営に関する企画・検討・決裁を行う。</li>
+      <li>学校コミュニティ基金について、総会で承認された予算枠の範囲内で執行を決裁する。</li>
+      <li>学校未来基金の管理を行い、その執行については総会の決議を経て実施する。</li>
+    </ol>
+
+    <hr>
+    <h3>第8章　学年別活動委員会</h3>
+    <h4>第16条（学年別活動委員会の位置付け）</h4>
+    <p>学年別活動委員会は、学校生活・卒業等に関わる保護者の協力活動を組織的に担うために設置する委員会の総称である。</p>
+    <ol>
+      <li>委員会は「学校委託型」と「保護者自治型」の2種類に分類される。</li>
+      <li>学校委託型委員会の活動は、PTA会員・非会員を問わず該当学年の保護者全員を対象とし、学校とPTAとの間で締結する覚書によって依頼内容・役割分担を明確にする。</li>
+      <li>保護者自治型委員会の活動は、保護者の自治に委ねる。PTAは支援・調整するが、活動の企画・運営・資金管理には関与しない。</li>
+      <li>各委員会の詳細は、役員会が定める細則による。</li>
+    </ol>
+    <h4>第17条（学校コミュニティ基金の活用）</h4>
+    <p>学校委託型委員会の事務経費は、学校コミュニティ基金の学年別活動委員会枠から支出することができる。保護者自治型委員会の活動費は原則として保護者の実費負担とする。</p>
+
+    <hr>
+    <h3>第9章　学校コミュニティプロジェクト</h3>
+    <h4>第18条（学校コミュニティプロジェクトの位置付け）</h4>
+    <p>学校コミュニティプロジェクトは、保護者・地域住民・教職員が自発的に参加する任意活動の総称であり、本会が管理する組織ではない。PTAはその活動を財政的・広報的に支援する応援団としての役割を担う。</p>
+    <ol>
+      <li>参加はすべて任意とし、会員・非会員を問わない。</li>
+      <li>活動の企画・運営は参加者が自律的に行う。</li>
+      <li>具体的な活動例：おやフェス、青少年活動など。</li>
+    </ol>
+    <h4>第19条（学校コミュニティ基金の活用）</h4>
+    <ol>
+      <li>活動費の申請は全保護者・教職員にオープンな公募制とする。</li>
+      <li>支出の決裁基準は第4章第7条および役員会が定める細則による。</li>
+      <li>活動の収支はPTAの情報公開サイトにてリアルタイムに公開する。</li>
+      <li>活動から生じた収益は全額を学校コミュニティ基金に返還する。</li>
+    </ol>
+
+    <hr>
+    <h3>第10章　改正</h3>
+    <h4>第20条（規約の改正）</h4>
+    <p>この規約は、総会で出席者の過半数の賛成によって改正することができる。ただし、改正案の提出については、前もってその内容を全会員に通告することを原則とする。</p>
+
+    <hr>
+    <h3>付則</h3>
+    <h4>第21条</h4><p>この規約を施行するに必要な細則は役員会で定めることができる。</p>
+    <h4>第22条</h4><p>新年度予算の承認なき間は、前年度の予算の範囲内で新年度事業の運営ができる。</p>
+    <h4>第23条（学校支援コーディネーター）</h4><p>学校支援コーディネーターは、学校コミュニティプロジェクト全体をリードし、保護者・地域・学校が無理なく関われる仕組みづくりを担う。PTAの役員ではなく、独立した立場で活動する。PTAはその活動を支援する。</p>
+    <h4>第24条（世田谷区小学校PTA連合会の輪番業務）</h4><p>世田谷区小学校PTA連合会（世小P）から各校輪番制で依頼される業務については、役員会が会員に募集をかけ、担い手がいる場合に限り引き受けるものとする。担い手がいない場合は辞退することができる。</p>
+    <blockquote>※次回の輪番は令和10年度（2028年度）に予定されている。</blockquote>
+    <h4>第25条</h4><p>この規約は昭和45年2月施行。令和８年５月改正（令和８年度より実施）。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 会計運用細則 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="kaikei">
+  <div class="section-header green" onclick="toggleSection(this)">
+    <h2>会計運用細則（令和8年5月制定）</h2>
+    <span class="badge">全5章13条</span>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body article">
+    <p>本細則は、尾山台小学校ＰＴＡ規約第7条・第15条・第19条に基づき、役員会が定める。</p>
+
+    <hr>
+    <h3>第1章　学校コミュニティ基金の予算管理</h3>
+    <h4>第1条（予算の総額承認）</h4>
+    <p>学校コミュニティ基金の支出については、年度初めの定期総会において「総額予算枠」の承認を得ることで、毎回の個別会員決議を不要とし、役員会が機動的に執行できるものとする。</p>
+
+    <h4>第2条（予算の3系統分割）</h4>
+    <p>学校コミュニティ基金の予算は、次の3つの枠に分けて編成・管理する。</p>
+    <ol>
+      <li><strong>学年別活動委員会枠</strong> — 旗振り委員会（1年生）、執行委員会（3年生）、卒業対策委員会（6年生）の必須活動に伴う事務経費。各委員会の活動計画をもとに年度初めに役員会が予算額を設定する。</li>
+      <li><strong>学校コミュニティプロジェクト枠</strong> — おやフェス等の既存イベント、および新規公募プロジェクトへの支援金。既存イベントの実績額と新規プロジェクト募集枠を合算して設定する。</li>
+      <li><strong>関係団体支援枠</strong> — 規約第4条（事業）に定める活動を行う団体への支援金。支援対象団体および支援額は、年度初めに役員会が実績・活動内容を踏まえて設定する。支援対象団体の追加・変更は役員会の決議による。</li>
+    </ol>
+
+    <h4>第3条（執行権限・金額キャップ制）</h4>
+    <ol>
+      <li><strong>役員会決裁</strong>（次のいずれかに該当する場合）
+        <ul>
+          <li>予算枠内の既存事業への支出</li>
+          <li>1案件あたり5万円以下の新規プロジェクト支援</li>
+          <li>関係団体支援枠の予算範囲内の支出</li>
+        </ul>
+      </li>
+      <li><strong>会員承認</strong>（次のいずれかに該当する場合）
+        <ul>
+          <li>1案件あたり5万円を超える高額支出</li>
+          <li>基金の使用目的との適合性に疑義がある場合</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h4>第4条（事業収益の取り扱い）</h4>
+    <ol>
+      <li>収益とは、参加費・物販・寄付等の収入から直接経費を差し引いた額。</li>
+      <li>収益の返還は当該年度の決算時に行い、収支内訳を会員に公開する。</li>
+      <li>収益を次年度の同一プロジェクトへ繰り越すことはできない。</li>
+    </ol>
+
+    <hr>
+    <h3>第2章　禁止事項（ネガティブリスト）</h3>
+    <h4>第5条（禁止支出）</h4>
+    <p>本会が管理するすべての基金・口座について、次に掲げる支出を一切禁止する。</p>
+    <ol>
+      <li>特定の個人の利益を目的とした支出。</li>
+      <li>飲食を主たる目的とする会合・懇親会等への支出。</li>
+      <li>政治活動または宗教活動に関わる支出。</li>
+      <li>学校コミュニティの活性化および学校支援の目的に合致しない支出。</li>
+      <li>第2条第3号（関係団体支援枠）に該当しない団体への固定的・継続的な補助。</li>
+      <li>旧制度においてPTA会費から支出していた入学時の校帽代。校帽は各保護者が学校用品具販売店にて個別に購入するものとする。</li>
+      <li>旧制度において加入していた個人情報漏えい補償保険。改革以前から連絡網の電子化や名簿配布の廃止等により、PTAが管理する個人情報はほぼなくなっていたため廃止。</li>
+    </ol>
+
+    <hr>
+    <h3>第3章　透明性・情報公開</h3>
+    <h4>第6条（公募制の徹底）</h4>
+    <ol>
+      <li>申請の受付期間・方法は役員会が定め、年度初めに全会員へ通知する。</li>
+      <li>「誰でも、いつでも提案できる」状態を維持し、特定グループによる予算独占を防ぐ。</li>
+      <li>採否の判断基準は役員会が明示し、申請者に対して結果と理由を通知する。</li>
+    </ol>
+    <h4>第7条（リアルタイム情報公開）</h4>
+    <ol>
+      <li>各口座の執行状況（支出項目・金額・残高）。</li>
+      <li>承認済みプロジェクトの内容・予算額・進捗・成果。</li>
+      <li>公開手段はPTAの情報公開サイト等の保護者向け広報媒体とし、役員会が運用方法を定める。</li>
+    </ol>
+
+    <hr>
+    <h3>第4章　基金の健全性管理</h3>
+    <h4>第8条（年度繰越の確認と報告）</h4>
+    <p>役員会は毎年度末に繰越状況を確認し、定期総会において報告する（収支合計、繰越のプラス/マイナス、基金残高の推移）。</p>
+    <h4>第9条（5年・10年後の財務シミュレーション）</h4>
+    <p>楽観・標準・悲観の3シナリオで基金残高の将来推計を毎年更新。いずれかのシナリオで残高100万円を下回る場合は支出見直し案を作成。</p>
+    <h4>第10条（残高アラートと対応措置）</h4>
+    <p>学校コミュニティ基金の実残高が100万円を下回った場合、5段階の措置を講じる（現状報告→採択基準厳格化→基金間振替→収益確保→任意拠出の審議）。</p>
+
+    <hr>
+    <h3>第5章　監査</h3>
+    <h4>第11条（会計監査の実施）</h4>
+    <p>会計監査委員は年度中に随時監査を実施し、禁止支出・決裁権限の逸脱・情報公開義務の履行状況を確認する。結果は定期総会で報告。</p>
+
+    <hr>
+    <h3>付則</h3>
+    <h4>第12条</h4><p>本細則は令和８年５月より施行する。</p>
+    <h4>第13条</h4><p>本細則の改正は役員会の決議による。改正内容は次の定期総会において会員に報告する。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 学年別活動委員会運営細則 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="iinkai">
+  <div class="section-header amber" onclick="toggleSection(this)">
+    <h2>学年別活動委員会 運営細則（令和8年5月制定）</h2>
+    <span class="badge">全5章11条</span>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body article">
+    <p>本細則は、尾山台小学校ＰＴＡ規約第16条第4項に基づき、役員会が定める。</p>
+
+    <hr>
+    <h3>第1章　設置の趣旨と性質の定義</h3>
+    <h4>第1条（設置の趣旨）</h4>
+    <table>
+      <thead><tr><th>委員会</th><th>対象学年</th><th>性質</th><th>根拠</th></tr></thead>
+      <tbody>
+        <tr><td>旗振り委員会</td><td>1年生保護者</td><td>学校委託型</td><td>通学安全確保は学校が責任を持つ業務</td></tr>
+        <tr><td>執行委員会</td><td>3年生保護者</td><td>学校委託型</td><td>行事受付・通学路点検・遊び場開放は学校依頼業務</td></tr>
+        <tr><td>卒業対策委員会</td><td>6年生保護者</td><td>保護者自治型</td><td>児童の卒業を祝う活動。保護者が自主的に担う</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第2章　選出の原則</h3>
+    <h4>第2条（選出の基本方針）</h4>
+    <p>立候補を優先。不足する場合は話し合い・互選・くじ引き等の方法で選出する。</p>
+    <h4>第3条（募集・選出のスケジュール）</h4>
+    <ol>
+      <li>役員会は毎年3月末までに募集要項を該当学年の保護者に通知する。</li>
+      <li>立候補の受付期間は2週間以上設ける。</li>
+      <li>選出結果は4月の学年懇談会または書面にて確定・通知する。</li>
+    </ol>
+
+    <hr>
+    <h3>第3章　学校委託型委員会の活動</h3>
+    <h4>第4条（旗振り委員会）</h4>
+    <p>入学直後の登校安全を確保するため、学校からの依頼に基づき実施。入学直後の3日間（朝20〜30分程度）。日程枠を事前提示し、各家庭が都合のよい枠を登録する。</p>
+    <h4>第5条（執行委員会）</h4>
+    <p>学校行事の円滑な運営および通学路・遊び場の安全確保のため実施。担当活動：行事受付、通学路点検、遊び場開放運営。</p>
+    <p>遊び場開放事業の運営主体は「遊び場開放運営委員会」（世田谷区教育委員会事務局が委託先として各校に設置）であり、PTAとは独立した組織である。PTA会計とは一切関与しない。</p>
+
+    <hr>
+    <h3>第4章　保護者自治型委員会の活動</h3>
+    <h4>第6条（卒業対策委員会）</h4>
+    <p>6年生保護者が児童の卒業を祝うために自主的に組織する委員会。</p>
+    <ul>
+      <li>主な活動：卒業式準備、卒業アルバムの作成・発注、卒業式備品（卒業証書ホルダー・コサージュ等）の手配。</li>
+      <li>費用の集金は学校モールを通じて保護者から徴収。卒対口座で管理。PTA会計とは独立。</li>
+    </ul>
+
+    <p><strong>卒業対策にかかる費目の全体整理</strong></p>
+    <table>
+      <thead><tr><th>費目</th><th>PTAの関与</th><th>学校の関与</th></tr></thead>
+      <tbody>
+        <tr><td>卒業アルバム代</td><td>発注者として写真館と基本契約</td><td>学校モールによる集金協力</td></tr>
+        <tr><td>卒業式備品（ホルダー等）</td><td>移行期間中は基金から支援</td><td>学校モールによる集金協力</td></tr>
+        <tr><td>プレゼント・お花代</td><td>完全無関与</td><td>学校モールによる集金協力</td></tr>
+        <tr><td>同窓会費</td><td>完全無関与</td><td>学校モールによる集金協力</td></tr>
+        <tr><td>謝恩会・送る会等</td><td>対象外</td><td>完全無関与</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>移行措置スケジュール</strong></p>
+    <table>
+      <thead><tr><th>卒業年度</th><th>PTA会費納付年数</th><th>基金支援</th><th>保護者実費</th></tr></thead>
+      <tbody>
+        <tr><td>2027年3月</td><td>5年間</td><td>5/6</td><td>1/6</td></tr>
+        <tr><td>2028年3月</td><td>4年間</td><td>4/6</td><td>2/6</td></tr>
+        <tr><td>2029年3月</td><td>3年間</td><td>3/6</td><td>3/6</td></tr>
+        <tr><td>2030年3月</td><td>2年間</td><td>2/6</td><td>4/6</td></tr>
+        <tr><td>2031年3月</td><td>1年間</td><td>1/6</td><td>5/6</td></tr>
+        <tr><td>2032年3月〜</td><td>0年</td><td>なし</td><td>全額実費</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>第5章　役員会との関係</h3>
+    <h4>第7条（役員会の支援）</h4>
+    <p>学校委託型の事務経費は基金から支出可能。保護者自治型は原則実費負担（移行措置を除く）。</p>
+    <h4>第8条（不選出時の対応）</h4>
+    <p>やむを得ず委員長・副委員長が選出できない場合は、役員会が該当学年と協議のうえ活動内容を調整できる。</p>
+    <h4>第9条（学校との関係）</h4>
+    <p>学校委託型委員会は覚書によって依頼内容・役割分担を明確にする。保護者自治型は覚書の対象外。</p>
+
+    <hr>
+    <h3>付則</h3>
+    <h4>第10条</h4><p>本細則は令和８年５月より施行する。</p>
+    <h4>第11条</h4><p>本細則の改正は役員会の決議による。改正内容は次の定期総会において会員に報告する。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 業務委託契約書 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section" id="contract">
+  <div class="section-header slate" onclick="toggleSection(this)">
+    <h2>学校PTA間 業務委託契約書（雛形）</h2>
+    <span class="badge">全4章18条</span>
+    <span class="toggle">▼</span>
+  </div>
+  <div class="section-body article">
+    <h3>第1章　総則</h3>
+    <h4>第1条（目的）</h4><p>学校運営に必要な一定の事務および関連業務について、学校がPTAに委託し、その実施および費用の取り扱いについて定める。</p>
+    <h4>第2条（委託業務の範囲）</h4>
+    <ol>
+      <li><strong>経費管理業務</strong>（第2章）— 学校運営に必要な経費の管理・執行</li>
+      <li><strong>学年別活動の運営支援業務</strong>（第3章）— 学校からの依頼に基づく保護者の協力活動の調整・実施</li>
+    </ol>
+    <h4>第3条（契約期間）</h4><p>毎年4月1日から翌年3月31日まで。</p>
+    <h4>第4条（協議事項）</h4><p>本契約に定めのない事項については、甲乙協議のうえ定める。</p>
+
+    <hr>
+    <h3>第2章　経費管理業務</h3>
+    <h4>第5条（委託費）</h4><p>保護者から学校が徴収する学校運営必要経費（一家庭年額500円）を原資とする。教職員は負担対象外。</p>
+    <h4>第6条（委託業務の内容）</h4>
+    <ol>
+      <li>学校運営に必要な消耗品の購入および管理</li>
+      <li>コピー機利用に関する費用の支払い</li>
+      <li>PTA総合補償制度保険料の支払い</li>
+      <li>世小P会費の支払い</li>
+      <li>その他、甲乙協議のうえ必要と認められる業務</li>
+    </ol>
+    <h4>第7条（業務の執行）</h4><p>支出の都度、記録を管理し、領収書等を保管。リアルタイムに公開。</p>
+    <h4>第8条（報告）</h4><p>年度末に決算を作成し、学校およびPTA会員に報告する。</p>
+    <h4>第9条（残金の取り扱い）</h4><p>残金が生じた場合は学校未来基金へ移管する。</p>
+
+    <hr>
+    <h3>第3章　学年別活動の運営支援業務</h3>
+    <h4>第10条（依頼の趣旨）</h4><p>児童の安全確保および学校行事の円滑な運営を目的とする。PTA会員・非会員問わず該当学年の保護者全員が対象。</p>
+    <h4>第11条（依頼業務の内容）</h4>
+    <ol>
+      <li><strong>旗振り活動</strong>（1年生保護者）— 入学直後の3日間の通学安全見守り</li>
+      <li><strong>執行委員会活動</strong>（3年生保護者）— 行事受付、通学路安全点検、遊び場開放の運営支援</li>
+    </ol>
+    <h4>第12条〜第13条</h4><p>PTAは募集・選出プロセスを調整。学校は情報提供・安全確保の責任・施設利用を認める。</p>
+    <h4>第14条（経費）</h4><p>学校コミュニティ基金の学年別活動委員会枠から支出。</p>
+    <h4>第15条（保険）</h4><p>PTA総合補償制度保険の適用範囲を確認し、必要に応じて追加保険を検討。</p>
+    <h4>第16条（遊び場開放事業との関係）</h4><p>運営主体は「遊び場開放運営委員会」（区の委託）であり、PTAとは独立。執行委員会は現場運営のみ担当。</p>
+
+    <hr>
+    <h3>第4章　雑則</h3>
+    <h4>第17条（個人情報の取り扱い）</h4><p>目的外使用禁止・最小限の収集・契約終了時の返却または廃棄。</p>
+    <h4>第18条（契約の変更）</h4><p>甲乙協議のうえ書面により変更する。</p>
+  </div>
+</div>
+
+
+</div><!-- /container -->
+
+<div class="footer">
+  尾山台小学校PTA　令和8年度<br>
+  本サイトの内容に関するお問い合わせはPTA役員会までお願いいたします。
+</div>
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.toggle');
+  body.classList.toggle('open');
+  toggle.textContent = body.classList.contains('open') ? '▲' : '▼';
+}
+function toggleQA(q) {
+  const a = q.nextElementSibling;
+  a.classList.toggle('open');
+}
+// Open first section by default
+document.addEventListener('DOMContentLoaded', () => {
+  // Q&A items: open first one
+  const firstQA = document.querySelector('.qa-a');
+  if (firstQA) firstQA.classList.add('open');
+});
+</script>
+</body>
+</html>
