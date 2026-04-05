@@ -113,26 +113,31 @@
   .section-header {
     background: var(--gray-800);
     color: #fff;
-    padding: 14px 24px;
+    padding: 14px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     user-select: none;
   }
   .section-header h2 {
     font-size: 16px;
     font-weight: 700;
+    flex: 1;
+    min-width: 0;
   }
   .section-header .badge {
     background: rgba(255,255,255,.2);
     padding: 2px 10px;
     border-radius: 12px;
     font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .section-header .toggle {
     font-size: 18px;
     transition: transform .3s;
+    flex-shrink: 0;
   }
   .section-header.blue { background: var(--primary); }
   .section-header.green { background: var(--accent); }
@@ -450,6 +455,15 @@
     .branch-row { flex-direction: column; }
     .chapter-grid { grid-template-columns: 1fr; }
     .topbar nav { display: none; }
+    .section-header { padding: 12px 16px; gap: 8px; }
+    .section-header h2 { font-size: 14px; }
+    .section-header .badge { font-size: 10px; padding: 2px 8px; }
+    .section-body { padding: 16px; }
+    .article table { font-size: 12px; }
+    .article th, .article td { padding: 6px 8px; }
+    .role-table { font-size: 12px; }
+    .role-table th, .role-table td { padding: 6px 8px; }
+    .tree-connector { font-size: 12px; }
   }
 </style>
 </head>
@@ -920,7 +934,7 @@
     <table>
       <thead><tr><th>項目</th><th>旧</th><th>新</th></tr></thead>
       <tbody>
-        <tr><td>構成</td><td>役員＋校長・副校長</td><td>変更なし</td></tr>
+        <tr><td>構成</td><td>役員＋校長・副校長</td><td>役員＋学校側が選出した代表者</td></tr>
         <tr><td>任務</td><td>議案作成・予算案作成のみ</td><td>企画・検討・決裁、基金の予算枠内執行、学校未来基金の管理を追加</td></tr>
       </tbody>
     </table>
@@ -1111,7 +1125,7 @@
     <hr>
     <h3>第7章　役員会</h3>
     <h4>第14条（役員会の構成）</h4>
-    <p>本会の役員及び校長、副校長をもって構成する。</p>
+    <p>本会の役員及び学校側が選出した代表者をもって構成する。</p>
     <h4>第15条（役員会の任務）</h4>
     <ol>
       <li>総会に提出する議案を作成する。</li>
