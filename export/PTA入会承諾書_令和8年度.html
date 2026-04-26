@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尾山台小学校PTA 入会のご案内・承諾書</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --accent: #059669;
+    --accent-light: #d1fae5;
+    --warm: #f59e0b;
+    --warm-light: #fef3c7;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --red-light: #fee2e2;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: var(--gray-800);
+    line-height: 1.8;
+    background: #fff;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 20mm 15mm;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--primary);
+  }
+  .header .school-name {
+    font-size: 13px;
+    color: var(--gray-600);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 22px;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  /* ── Intro ── */
+  .intro {
+    background: var(--gray-50);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    line-height: 2;
+  }
+  .intro p { margin-bottom: 8px; }
+  .intro p:last-child { margin-bottom: 0; }
+
+  /* ── Section ── */
+  h2 {
+    font-size: 15px;
+    color: var(--primary);
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--primary);
+  }
+
+  /* ── Comparison Table ── */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 12.5px;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+  .comparison-table thead th {
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+  }
+  .comparison-table thead th:first-child {
+    background: var(--gray-600);
+  }
+  .comparison-table tbody th {
+    background: var(--gray-100);
+    font-weight: 600;
+    white-space: nowrap;
+    width: 100px;
+  }
+  .comparison-table .old {
+    background: var(--red-light);
+    color: #991b1b;
+  }
+  .comparison-table .new {
+    background: var(--accent-light);
+    color: #065f46;
+  }
+  .comparison-table .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .badge-gone { background: #fecaca; color: #991b1b; }
+  .badge-new { background: #a7f3d0; color: #065f46; }
+
+  /* ── Merit Cards ── */
+  .merit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .merit-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px;
+    background: #fff;
+  }
+  .merit-card .icon {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .merit-card h3 {
+    font-size: 13px;
+    color: var(--gray-800);
+    margin-bottom: 4px;
+  }
+  .merit-card p {
+    font-size: 11.5px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* ── Flow Diagram ── */
+  .flow-section {
+    margin-bottom: 24px;
+  }
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 12px 0;
+  }
+  .flow-step {
+    text-align: center;
+    flex: 1;
+    max-width: 160px;
+  }
+  .flow-step .circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 6px;
+    font-size: 24px;
+  }
+  .flow-step .label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-800);
+  }
+  .flow-step .desc {
+    font-size: 10.5px;
+    color: var(--gray-600);
+    margin-top: 2px;
+  }
+  .flow-arrow {
+    font-size: 20px;
+    color: var(--gray-400);
+    flex-shrink: 0;
+    margin: 0 4px;
+    padding-bottom: 24px;
+  }
+  .circle-blue { background: var(--primary-light); }
+  .circle-green { background: var(--accent-light); }
+  .circle-yellow { background: var(--warm-light); }
+
+  /* ── Not Required Box ── */
+  .not-required {
+    background: var(--warm-light);
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+  }
+  .not-required h3 {
+    font-size: 13px;
+    color: #92400e;
+    margin-bottom: 8px;
+  }
+  .not-required ul {
+    list-style: none;
+    padding: 0;
+  }
+  .not-required li {
+    font-size: 12.5px;
+    color: #92400e;
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .not-required li::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* ── Committee Diagram ── */
+  .committee-note {
+    background: var(--gray-50);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 12.5px;
+  }
+  .committee-note h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--gray-800);
+  }
+  .committee-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .committee-box {
+    flex: 1;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+  .committee-box .name { font-weight: 700; font-size: 12px; }
+  .committee-box .tag {
+    display: inline-block;
+    font-size: 9.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-top: 2px;
+  }
+  .cb-blue { background: var(--primary-light); }
+  .cb-green { background: var(--accent-light); }
+  .tag-blue { background: var(--primary); color: #fff; }
+  .tag-green { background: var(--accent); color: #fff; }
+  .committee-caption {
+    font-size: 11px;
+    color: var(--gray-600);
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* ── Consent Form ── */
+  .consent-form {
+    border: 2px solid var(--gray-800);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-top: 32px;
+    page-break-inside: avoid;
+  }
+  .consent-form h2 {
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+    color: var(--gray-800);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .consent-text {
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+  .consent-text p { margin-bottom: 8px; }
+  .consent-fields {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  .field-row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .field-label {
+    width: 100px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .field-line {
+    flex: 1;
+    border-bottom: 1px solid var(--gray-800);
+    min-height: 24px;
+    margin-left: 8px;
+  }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--gray-800);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .form-note {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 24px;
+    text-align: right;
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  /* ── Print ── */
+  @media print {
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+    body {
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .consent-form {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="school-name">世田谷区立尾山台小学校</div>
+  <h1>PTA入会のご案内と承諾書</h1>
+  <div class="subtitle">令和8年度（2026年度）</div>
+</div>
+
+<!-- Introduction -->
+<div class="intro">
+  <p>保護者の皆さまへ</p>
+  <p>尾山台小学校PTAは、令和8年度より<strong>「無理なく・公平に・透明に」</strong>をコンセプトに運営を大きく見直しました。<br>
+  従来のPTAにありがちな「会費負担」「委員の強制」「活動の不透明さ」を解消し、入会しやすく、活動に参加しやすい仕組みに生まれ変わっています。</p>
+  <p>以下の内容をご確認いただき、ご賛同いただける方は末尾の承諾書をご提出ください。</p>
+</div>
+
+<!-- Comparison -->
+<h2>一般的なPTAとここが違います</h2>
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>一般的なPTA</th>
+      <th>尾山台小PTA（改革後）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>会　費</th>
+      <td class="old">年3,000〜5,000円程度</td>
+      <td class="new"><span class="badge badge-gone">廃止</span>会費はありません<br><span style="font-size:11px; color:#065f46;">※学校運営必要経費として年500円/家庭のみ</span></td>
+    </tr>
+    <tr>
+      <th>委員会</th>
+      <td class="old">入会すると委員が割り当てられる<br>（ポイント制・くじ引き等）</td>
+      <td class="new"><span class="badge badge-new">分離</span>委員会活動は学年単位で運営<br><span style="font-size:11px; color:#065f46;">PTA入会とは無関係です</span></td>
+    </tr>
+    <tr>
+      <th>活動負担</th>
+      <td class="old">ベルマーク・バザー・講演会の<br>企画運営など多岐にわたる</td>
+      <td class="new"><span class="badge badge-gone">廃止</span>会員に活動義務はありません<br><span style="font-size:11px; color:#065f46;">参加したいプロジェクトに任意参加</span></td>
+    </tr>
+    <tr>
+      <th>退　会</th>
+      <td class="old">退会しづらい雰囲気・手続きの壁</td>
+      <td class="new"><span class="badge badge-new">自由</span>いつでも自由に退会できます</td>
+    </tr>
+    <tr>
+      <th>会　計</th>
+      <td class="old">年度末の決算報告のみ</td>
+      <td class="new"><span class="badge badge-new">透明</span>リアルタイムで収支を公開</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Member Benefits -->
+<h2>PTA会員になると</h2>
+<div class="merit-grid">
+  <div class="merit-card">
+    <div class="icon">🗳️</div>
+    <h3>総会での議決権</h3>
+    <p>PTA運営の方針や予算を決める総会に参加し、議決に加わることができます。学校コミュニティの運営にあなたの意見を反映できます。</p>
+  </div>
+  <div class="merit-card">
+    <div class="icon">🛡️</div>
+    <h3>PTA総合補償制度</h3>
+    <p>PTA活動中や登下校中の事故に対する補償保険が自動適用されます。お子さまの安全を守る大切な制度です。</p>
+  </div>
+  <div class="merit-card">
+    <div class="icon">🎪</div>
+    <h3>プロジェクトの提案・参加</h3>
+    <p>おやフェスなどの既存イベントはもちろん、「やりたい！」と思うプロジェクトを自由に企画提案し、基金からの活動費支援を申請できます。</p>
+  </div>
+  <div class="merit-card">
+    <div class="icon">📢</div>
+    <h3>情報共有・ネットワーク</h3>
+    <p>学校運営や会計情報のリアルタイム公開を閲覧し、保護者同士や教職員とのつながりを持つことができます。</p>
+  </div>
+</div>
+
+<!-- Not Required -->
+<div class="not-required">
+  <h3>入会しても、こんな義務はありません</h3>
+  <ul>
+    <li>PTA会費の支払い（会費は廃止されました）</li>
+    <li>委員会やその他の活動への参加の強制</li>
+    <li>行事の手伝いの割り当て</li>
+    <li>ベルマーク収集・バザー運営等の従来型活動</li>
+  </ul>
+</div>
+
+<!-- Committee Explanation -->
+<div class="committee-note">
+  <h3>「委員会活動」と「PTA入会」は別のものです</h3>
+  <p style="margin-bottom: 10px;">委員会活動は学年ごとに学校から保護者に協力を依頼するものであり、PTA会員かどうかに関係なく、該当学年の保護者全員が対象です。</p>
+  <div class="committee-row">
+    <div class="committee-box cb-blue">
+      <div class="name">旗振り委員会</div>
+      <div>1年生保護者</div>
+      <span class="tag tag-blue">学校委託型</span>
+    </div>
+    <div class="committee-box cb-blue">
+      <div class="name">執行委員会</div>
+      <div>3年生保護者</div>
+      <span class="tag tag-blue">学校委託型</span>
+    </div>
+    <div class="committee-box cb-green">
+      <div class="name">卒業対策委員会</div>
+      <div>6年生保護者</div>
+      <span class="tag tag-green">保護者自治型</span>
+    </div>
+  </div>
+  <div class="committee-caption">PTA会員・非会員を問わず、該当学年の保護者が対象です</div>
+</div>
+
+<!-- Flow -->
+<div class="flow-section">
+<h2>年500円の委託費の使いみち</h2>
+<p style="font-size: 12.5px; margin-bottom: 8px;">PTA会費ではなく、学校運営に必要な経費を学校が保護者から徴収する仕組みです。</p>
+<div class="flow-diagram">
+  <div class="flow-step">
+    <div class="circle circle-blue">🏫</div>
+    <div class="label">学校が集金</div>
+    <div class="desc">一家庭 年500円<br>（教職員は負担なし）</div>
+  </div>
+  <div class="flow-arrow">▶</div>
+  <div class="flow-step">
+    <div class="circle circle-green">📋</div>
+    <div class="label">PTAが管理・執行</div>
+    <div class="desc">消耗品・コピー代<br>保険料・世小P会費</div>
+  </div>
+  <div class="flow-arrow">▶</div>
+  <div class="flow-step">
+    <div class="circle circle-yellow">👁️</div>
+    <div class="label">会員に公開</div>
+    <div class="desc">収支をリアルタイムで<br>情報公開</div>
+  </div>
+</div>
+</div>
+
+<!-- Consent Form -->
+<div class="consent-form">
+  <h2>入 会 承 諾 書</h2>
+
+  <div class="consent-text">
+    <p>私は、尾山台小学校PTAの目的および運営方針に賛同し、PTA会員として入会することを承諾します。</p>
+    <p>あわせて、以下の事項を確認しました。</p>
+  </div>
+
+  <div class="checkbox-row">
+    <div class="checkbox"></div>
+    <span>入会は任意であり、退会も自由にできること</span>
+  </div>
+  <div class="checkbox-row">
+    <div class="checkbox"></div>
+    <span>会員として総会での議決権を持てること</span>
+  </div>
+  <div class="checkbox-row">
+    <div class="checkbox"></div>
+    <span>PTA会費はなく、学校運営必要経費（年500円/家庭）は学校からの徴収費であること</span>
+  </div>
+  <div class="checkbox-row">
+    <div class="checkbox"></div>
+    <span>委員会活動は学年単位の仕組みであり、PTA入会とは無関係であること</span>
+  </div>
+  <div class="checkbox-row">
+    <div class="checkbox"></div>
+    <span>PTA総合補償制度保険が会員に適用されること</span>
+  </div>
+
+  <div class="consent-fields">
+    <div class="field-row">
+      <span class="field-label">提出日</span>
+      <div class="field-line" style="max-width: 200px;"></div>
+    </div>
+    <div class="field-row">
+      <span class="field-label">児童氏名</span>
+      <div class="field-line"></div>
+      <span class="field-label" style="width: 60px; text-align: center;">年</span>
+      <span class="field-label" style="width: 60px; text-align: center;">組</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">保護者氏名</span>
+      <div class="field-line"></div>
+    </div>
+  </div>
+
+  <div class="form-note">
+    ※ 本承諾書は年度ごとの提出は不要です。在学期間中有効となります。<br>
+    ※ 退会を希望される場合は、PTA役員会までお申し出ください。理由の説明は不要です。<br>
+    ※ ご不明な点がありましたら、PTA役員会までお気軽にお問い合わせください。
+  </div>
+</div>
+
+<div class="footer">
+  尾山台小学校PTA役員会
+</div>
+
+</body>
+</html>
